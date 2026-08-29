@@ -24,4 +24,3 @@ compatibility_date = "2026-08-01"
 # الـ Worker من لوحة Cloudflare (Settings → Variables and Secrets)،
 # وبتفضل شغالة زي ما هي حتى بعد ما تربط الـ Git — مش محتاج تعمل فيها
 # حاجة تاني إلا لو غيّرت قيمة سر معين.
- 
