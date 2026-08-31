@@ -174,7 +174,7 @@ async function confirmOdooOrder(env, orderId) {
     return data.result;
   };
 
-  const before = await callKw("sale.order", "read", [[orderId], ["name", "state"]]);
+  const before = await callKw("sale.order", "read", [[orderId], ["name", "state", "amount_total"]]);
   if (!before || !before.length) {
     return { ok: false, status: 404, message: "الطلب مش موجود" };
   }
@@ -210,7 +210,7 @@ async function confirmOdooOrder(env, orderId) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             chat_id: env.TELEGRAM_CHAT_ID,
-            text: `✅ تم تأكيد الدفع والطلب\n\n🧾 رقم الطلب: ${orderName}`,
+            text: `✅ تم تأكيد الدفع والطلب\n\n🧾 رقم الطلب: ${orderName}\n💰 الإجمالي: ${before[0].amount_total != null ? before[0].amount_total.toLocaleString('en-US') + ' SDG' : 'غير متاح'}`,
           }),
         });
       }
