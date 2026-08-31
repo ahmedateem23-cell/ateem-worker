@@ -1014,6 +1014,8 @@ export default {
 
         const orderInfo = await callKw("sale.order", "read", [[orderId], ["name", "amount_total"]]);
         const orderName = orderInfo && orderInfo[0] ? orderInfo[0].name : String(orderId);
+         const orderTotal = orderInfo && orderInfo[0] ? orderInfo[0].amount_total : null;
+const totalText = orderTotal != null ? orderTotal.toLocaleString('en-US') + ' SDG' : 'غير متاح';
 
         // خطوة 4: إيميل تأكيد Odoo التلقائي — بس للطلبات المؤكَّدة فورًا
         // (الدفع عند الاستلام). الدفع الإلكتروني ياخد إيميله بعد التأكيد
@@ -1046,6 +1048,11 @@ export default {
             let text =
               (isElectronic ? "🕓 طلب جديد — بانتظار تأكيد وصول المبلغ\n\n" : "✅ طلب مؤكد فعليًا في Odoo\n\n") +
               `🧾 رقم الطلب: ${orderName}\n` +
+               let text =
+  (isElectronic ? "🕓 طلب جديد — بانتظار تأكيد وصول المبلغ\n\n" : "✅ طلب مؤكد فعليًا في Odoo\n\n") +
+  `🧾 رقم الطلب: ${orderName}\n` +
+  `💰 الإجمالي: ${totalText}\n` +
+  `💳 طريقة الدفع: ${paymentLabel}\n` +
               `💳 طريقة الدفع: ${paymentLabel}\n` +
               `👤 الاسم: ${customer.name}\n` +
               `📞 الهاتف: ${customer.phone}\n` +
