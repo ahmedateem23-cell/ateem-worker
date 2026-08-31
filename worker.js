@@ -1046,15 +1046,12 @@ const totalText = orderTotal != null ? orderTotal.toLocaleString('en-US') + ' SD
             const itemsText = items.map((it) => `• ${it.name || it.sku} ${it.meta ? "(" + it.meta + ")" : ""} ×${it.qty}`).join("\n");
             const paymentLabel = paymentMethod === "bankak" ? "بنكك" : paymentMethod === "fawry" ? "فوري" : "عند الاستلام";
             let text =
-              (isElectronic ? "🕓 طلب جديد — بانتظار تأكيد وصول المبلغ\n\n" : "✅ طلب مؤكد فعليًا في Odoo\n\n") +
-              `🧾 رقم الطلب: ${orderName}\n` +
-               let text =
+              let text =
   (isElectronic ? "🕓 طلب جديد — بانتظار تأكيد وصول المبلغ\n\n" : "✅ طلب مؤكد فعليًا في Odoo\n\n") +
   `🧾 رقم الطلب: ${orderName}\n` +
   `💰 الإجمالي: ${totalText}\n` +
   `💳 طريقة الدفع: ${paymentLabel}\n` +
-              `💳 طريقة الدفع: ${paymentLabel}\n` +
-              `👤 الاسم: ${customer.name}\n` +
+  `👤 الاسم: ${customer.name}\n` +
               `📞 الهاتف: ${customer.phone}\n` +
               (customer.address ? `📍 العنوان: ${customer.address}\n` : "") +
               `\n${itemsText}`;
